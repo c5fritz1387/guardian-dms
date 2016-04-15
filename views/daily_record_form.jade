@@ -18,115 +18,109 @@ html(ng-app='daily_record_form')
     |     
     meta(name='author', content='Charles Fritz')
     |     
-    link(href='bower_components/mapbox.js/mapbox.css', rel='stylesheet')
-    |     
-    link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/leaflet/dist/leaflet.css')
-    |     
     link(rel='stylesheet', href='bower_components/bootstrap-table/dist/bootstrap-table.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/c3/c3.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css')
-    |     
-    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.css')
-    |     
-    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css')
-    |     
-    link(rel='stylesheet', href='bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css')
-    |     
-    link(rel='stylesheet', href='/vendor/leaflet/leaflet-print/dist/easyPrint.css')
-    |     
     link(rel='stylesheet', href='/stylesheets/app.css')
-    // link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' /
-    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-    //if lt IE 9
-      script(src='//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-      |       
-      script(src='//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    link(rel='stylesheet', href='/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/components-font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap-table/dist/bootstrap-table.min.css')     
+    link(rel='stylesheet', href='/stylesheets/app.css')
+
   body(ng-controller='mainController')
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            |             
+            span.icon-bar
+            |             
+            span.icon-bar
+          |           
+          span.navbar-brand.title Guardian DMS
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a#about-btn(href='#', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-question-circle.fa-white
+                |  About
+             li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+                i.fa.fa-tree.fa-white
+                |  
+                span#map Mapping  
+                b.caret
+              |           
+              ul.dropdown-menu
+                li
+                  a(href='/map', data-toggle='collapse', data-target='.navbar-collapse.in', name='map')
+                    i.fa.fa-globe
+                    |  Guardian 2015/16
+                    |                               
+            li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+                i.fa.fa-tree.fa-white
+                |  
+                span#tapping Birch Tapping  
+                b.caret
+              |           
+              ul.dropdown-menu
+                li
+                  a(href='/addTrees', data-toggle='collapse', data-target='.navbar-collapse.in', name='tapping')
+                    i.fa.fa-plus
+                    |  Add Trees
+                    | 
+                li
+                  a(href='/addData', data-toggle='collapse', data-target='.navbar-collapse.in', name='tapping')
+                    i.fa.fa-plus
+                    |  Add Data
+                    |
+            li
+              a#logout-btn(href='/logout', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-question-circle.fa-white
+                |  Logout 
     .container
       .header
-        h1 Add Daily Record
-        hr
-      .todo-form
-            form
-            .form-group
-              label.col-md-2.control-label(for='date') Date of Observation
-              .col-md-2
-                input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
-                .form-group
-              label.col-md-2.control-label(for='name') Name of Guardian Recorded
-              .col-md-2
-                input.form-control.input-md(id='name', type='text', placeholder='e.g. Leo Lepinao', ng-model='formData.name')
-              .form-group
-              label.col-md-2.control-label(for='tree_id') Tree ID
-              .col-md-2
-                input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
-                .form-group
-              label.col-md-2.control-label(for='flow') Sap volume/flow
-              .col-md-2
-                input.form-control.input-md(id='flow', type='text', placeholder='Sap volume/flow', ng-model='formData.flow')
-                .form-group
-              label.col-md-2.control-label(for='comments') Comments
-              .col-md-2
-                input.form-control.input-md(id='comments', type='text', placeholder='Access', ng-model='formData.comments')
-              .col-md-2
-              button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addData()') Add daily record to database
-
-              //.todo-list
-              //ul(ng-repeat='todo in treeData')
-                li
-                  h3
-                    input.lead(type='checkbox', ng-click='deleteTodo(treeData.id)')
-                    |  {{ treeData.site_id }}
-                hr//
-
-
-    // scripts
+        h1 Add Trees
+      form.form-inline
     
-    script(src='/bower_components/mapbox.js/mapbox.js')
-    |     
+    .form-group
+        label.col-md-2.control-label(for='tree_id ') Tree ID
+          input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
+
+    .form-group
+        label.col-md-2.control-label(for='date') Date of Observation
+          #datetimepicker1.input-group.date
+            input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
+            span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+    .form-group
+        label.col-md-2.control-label(for='time') Time of Observation
+          #datetimepicker2.input-group.date
+            input.form-control.input-md(id='time', type='text', placeholder='e.g. 04/23/2016 21:00', ng-model='formData.time')
+            span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+    .form-group
+        label.col-md-2.control-label(for='flow ') Quantity
+          input.form-control.input-md(id='flow', type='text', placeholder='e.g .79 liters', ng-model='formData.flow')
+    .form-group
+        label.col-md-2.control-label(for='sugar') Sugar
+          input.form-control.input-md(id='sugar', type='text', placeholder='', ng-model='formData.sugar')
+    .form-group
+        label.col-md-2.control-label(for='color') Color
+          input.form-control.input-md(id='color', type='text', placeholder='', ng-model='formData.color')
+    .form-group
+        label.col-md-2.control-label(for='name') Recorder
+          input.form-control.input-md(id='name', type='text', placeholder='e.g. Leo Lepiano', ng-model='formData.name')
+
+      button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addData()') Add daily record to database
+      button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='exportData()') Export Csv from database
+
+
     script(src='/bower_components/jquery/dist/jquery.min.js')
-    |    
-    //script(src='/vendor/leaflet/Leaflet.js')
-    |     
     script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
-    |     
     script(src='/bower_components/bootstrap-table/dist/bootstrap-table.min.js')
-    |     
-    script(src='/bower_components/d3/d3.min.js')
-    |     
-    script(src='/bower_components/c3/c3.min.js')
-    |     
-    script(src='/bower_components/esri-leaflet/dist/esri-leaflet.js')
-    |     
-    script(src='/vendor/esri/esri-leaflet-geocoder.js')
-    |     
-    script(src='/bower_components/alasql/dist/alasql.min.js')
-    |     
-    script(src='/bower_components/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js')
-    |     
-    script(src='/bower_components/tableExport.jquery.plugin/tableExport.min.js')
-    |     
-    script(src='/bower_components/file-saver.js/FileSaver.js')
-    |     
-    script(src='/bower_components/html2canvas/build/html2canvas.min.js')
-    |     
-    script(src='/bower_components/jspdf/dist/jspdf.min.js')
-    |     
-    script(src='/bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js')
-    |     
-    script(src='/vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js')
-    |     
-    script(src='/javascripts/leaflet-markercluster.js')
-    |     
-    script(src='/javascripts/export.js')
-    // script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script
-    script(src='http://code.jquery.com/jquery-1.11.2.min.js', type='text/javascript')
-    script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', type='text/javascript')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.12/angular.min.js')
+    script(src='/bower_components/moment/min/moment.min.js')
+    script(src='/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
     script(src='javascripts/daily_record.js')

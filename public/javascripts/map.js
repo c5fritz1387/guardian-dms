@@ -745,6 +745,7 @@ var searchControl = L.esri.Geocoding.Controls.geosearch({
 }).addTo(map);
 
 //legend
+
 var legend = L.control({position: 'bottomleft'});
 
 legend.onAdd = function (map) {
@@ -764,7 +765,28 @@ legend.onAdd = function (map) {
     return div;
 };
 
-legend.addTo(map);
+var legendtoggle = L.easyButton({
+  states: [{
+    stateName: 'add-legend',
+    icon: 'fa fa-map-signs',
+    title: 'add legend',
+    onClick: function(control) {
+      legend.addTo(map);
+      control.state('remove-legend');
+    }
+  }, {
+    icon: 'fa-undo',
+    stateName: 'remove-legend',
+    onClick: function(control,map) {
+      $(".legend").hide();
+      control.state('add-legend');
+    },
+    title: 'remove legend'
+  }]
+});
+
+legendtoggle.addTo(map);
+
 
 
 // Info control

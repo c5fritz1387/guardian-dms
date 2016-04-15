@@ -31,6 +31,7 @@ html(lang='en')
     |     
     link(rel='stylesheet', href='/bower_components/c3/c3.min.css')
     |     
+    link(rel='stylesheet', href='/bower_components/Leaflet.EasyButton/src/easy-button.css')
     link(rel='stylesheet', href='/bower_components/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css')
     |     
     link(rel='stylesheet', href='/bower_components/leaflet.markerclusterer/dist/MarkerCluster.css')
@@ -40,6 +41,7 @@ html(lang='en')
     link(rel='stylesheet', href='/bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css')
     |     
     link(rel='stylesheet', href='/vendor/leaflet/leaflet-print/dist/easyPrint.css')
+    link(rel='stylesheet', href='/vendor/leaflet/leaflet-legend.css')
     |     
     link(rel='stylesheet', href='/stylesheets/app.css')
     // link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' /
@@ -65,7 +67,7 @@ html(lang='en')
             |             
             span.icon-bar
           |           
-          span.navbar-brand.title GeoJSON Dashboard
+          span.navbar-brand.title Guardian DMS
         |         
         .navbar-collapse.collapse
           ul.nav.navbar-nav
@@ -128,7 +130,12 @@ html(lang='en')
                   a(href='/addData', data-toggle='collapse', data-target='.navbar-collapse.in', name='tapping')
                     i.fa.fa-plus
                     |  Add Data
-                    | 
+
+             li
+              a#logout-btn(href='/logout', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-question-circle.fa-white
+                |  Logout
+            |        
     |     
     #map-container
       #map
@@ -327,7 +334,8 @@ html(lang='en')
     script(src='/bower_components/tableExport.jquery.plugin/tableExport.min.js')
     |     
     script(src='/bower_components/file-saver.js/FileSaver.js')
-    |     
+    | 
+    script(src='/bower_components/Leaflet.EasyButton/src/easy-button.js')    
     script(src='/bower_components/html2canvas/build/html2canvas.min.js')
     |     
     script(src='/bower_components/jspdf/dist/jspdf.min.js')
@@ -335,6 +343,7 @@ html(lang='en')
     script(src='/bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js')
     |     
     script(src='/vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js')
+    script(src='/vendor/leaflet/leaflet-legend.js')
     |     
     script(src='/javascripts/leaflet-markercluster.js')
     |     

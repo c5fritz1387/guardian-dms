@@ -1,5 +1,6 @@
 var express = require('express');
 //var app = express.Router();
+var csv = require("express-csv");
 var http = require('http');
 var fs = require('fs');
 var formidable = require("formidable");
@@ -44,7 +45,7 @@ app.get('/', function(req, res) {
 
 
 /* get new tree form */
-app.get('/addTrees', isLoggedIn, function (req, res) {
+app.get('/addTrees', /*isLoggedIn,*/ function (req, res) {
 
       res.render('new_tree_form', {
         title: 'Add New Trees',
@@ -80,13 +81,18 @@ app.get('/logout', function(req, res) {
 
 /*process new tree form*/
 
-app.post('/treeAdded', function (req, res) {
+app.post('/treeAdded',/*isLoggedIn,*/ function (req, res) {
 
     var results = [];
 
     // Grab data from http request
     var data = {
+        date: req.body.date, 
+        complete: false,
+        name: req.body.name, 
+        complete: false,
         tree_id: req.body.tree_id, 
+        complete: false,
         comments: req.body.comments, 
         complete: false,
         site_id: req.body.site_id,
@@ -96,7 +102,49 @@ app.post('/treeAdded', function (req, res) {
         x_coord: req.body.x_coord, 
         complete: false,
         y_coord: req.body.y_coord, 
-        complete: false
+        complete: false,
+        elevation: req.body.elevation, 
+        complete: false,
+        distance1: req.body.distance1, 
+        complete: false,
+        direction1: req.body.direction1, 
+        complete: false,
+        species1: req.body.species1, 
+        complete: false,
+        dbh1: req.body.dbh1, 
+        complete: false,
+        distance2: req.body.distance2, 
+        complete: false,
+        direction2: req.body.direction2, 
+        complete: false,
+        species2: req.body.species2, 
+        complete: false,
+        dbh2: req.body.dbh2, 
+        complete: false,
+        distance3: req.body.distance3, 
+        complete: false,
+        direction3: req.body.direction3, 
+        complete: false,
+        species3: req.body.species3, 
+        complete: false,
+        dbh3: req.body.dbh3, 
+        complete: false,
+        dbh_tree: req.body.dbh_tree, 
+        complete: false,
+        height_tree: req.body.height_tree, 
+        complete: false,
+        growth_info: req.body.growth_info, 
+        complete: false,
+        height: req.body.height, 
+        complete: false,
+        coordinates: req.body.coordinates, 
+        complete: false,
+        height_crown: req.body.height_crown,
+        complete: false,
+        width_crown: req.body.width_crown, 
+        complete: false,
+        count3m: req.body.count3m, 
+        complete: false,
     };
 
     // Get a Postgres client from the connection pool
@@ -109,7 +157,12 @@ app.post('/treeAdded', function (req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO public.tapping(tree_id, site_id, plot_id,x_coord, y_coord, comments) values($1, $2, $3, $4, $5, $6)", [data.tree_id, data.site_id, data.plot_id,data.x_coord, data.y_coord, data.comments]);
+        client.query("INSERT INTO public.tapping(date, name, tree_id, site_id, plot_id, x_coord, y_coord, comments,elevation, distance1, direction1, species1,"
+            + "dbh1,distance2, direction2, species2,dbh2,distance3, direction3, species3,dbh3,dbh_tree,height_tree,growth_info,height,coordinates,height_crown,width_crown,count3m)"
+        + " values($1, $2, $3, $4, $5, $6, $7, $8, $9,$10, $11, $12, $13, $14, $15, $16, $17, $18, $19,$20, $21, $22, $23, $24, $25, $26, $27, $28, $29)", 
+            [data.date, data.name, data.tree_id, data.site_id, data.plot_id, data.x_coord, data.y_coord, data.comments, data.elevation, data.distance1, data.direction1, data.species1,data.dbh1,
+            data.distance2, data.direction2, data.species2,data.dbh2,data.distance3, data.direction3, data.species3,data.dbh3,data.dbh_tree,data.height_tree,data.growth_info,data.height,data.coordinates,
+            data.height_crown,data.width_crown,data.count3m]);
         //client.query("INSERT INTO public.tapping(comments) values($1)", [data.text]);
         // SQL Query > Select Data
         var query = client.query("SELECT * FROM public.tapping ORDER BY id ASC");
@@ -140,17 +193,22 @@ app.post('/dataAdded', isLoggedIn, function (req, res) {
 
     // Grab data from http request
     var data = {
+        date: req.body.date, 
+        complete: false,
+        time: req.body.time, 
+        complete: false,
+        name: req.body.name, 
+        complete: false,
         tree_id: req.body.tree_id, 
-        comments: req.body.comments, 
         complete: false,
-        site_id: req.body.site_id,
+        flow: req.body.flow, 
         complete: false,
-        plot_id: req.body.plot_id, 
+        sugar: req.body.sugar, 
         complete: false,
-        x_coord: req.body.x_coord, 
+        color: req.body.color, 
         complete: false,
-        y_coord: req.body.y_coord, 
-        complete: false
+
+
     };
 
     // Get a Postgres client from the connection pool
@@ -163,10 +221,9 @@ app.post('/dataAdded', isLoggedIn, function (req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO public.tapping(tree_id, site_id, plot_id, comments) values($1, $2, $3, $4)", [data.tree_id, data.site_id, data.plot_id, data.comments]);
-        //client.query("INSERT INTO public.tapping(comments) values($1)", [data.text]);
+        client.query("INSERT INTO public.tappingdata(date, time,name, tree_id, flow, sugar, color) values($1, $2, $3, $4, $5, $6, $7)", [data.date, data.time, data.name, data.tree_id, data.flow, data.sugar, data.color]);  
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM public.tapping ORDER BY id ASC");
+        var query = client.query("SELECT * FROM public.tappingdata ORDER BY id ASC");
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -180,6 +237,83 @@ app.post('/dataAdded', isLoggedIn, function (req, res) {
             res.writeHead(200, {
             'content-type': 'text/plain'
         });
+        res.write('received the data:\n\n');
+        });
+    });
+
+    res.render
+});
+
+app.get('/exportData',isLoggedIn, function (req, res){
+    
+    var exportResults = [];
+
+      // Get a Postgres client from the connection pool
+    pg.connect(conString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+    var columns = ['date', 'time','name', 'tree_id', 'flow', 'sugar', 'color'];
+
+    var query = client.query('SELECT '+columns.join(', ')+' FROM public.tappingdata');
+    // Stream results back one row at a time
+        query.on('row', function(row) {
+            exportResults.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+        var headers = {};
+            for (header in exportResults[0]) {
+            headers[header] = header;
+          }
+        var resultWithHeaders = [];
+        resultWithHeaders.push(headers);
+        resultWithHeaders = resultWithHeaders.concat(exportResults);
+        res.csv(resultWithHeaders);
+        res.write('received the data:\n\n');
+        });
+    });
+
+    res.render
+});
+
+app.get('/exportTrees',isLoggedIn, function (req, res){
+    
+    var exportResults = [];
+
+      // Get a Postgres client from the connection pool
+    pg.connect(conString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).json({ success: false, data: err});
+        }
+    var columns = ['date', 'name', 'tree_id', 'site_id', 'plot_id', 'x_coord', 'y_coord', 'comments','elevation', 'distance1', 'direction1', 'species1',
+'dbh1','distance2', 'direction2', 'species2','dbh2','distance3', 'direction3', 'species3','dbh3','dbh_tree','height_tree','growth_info','height','coordinates','height_crown','width_crown','count3m'];
+
+    var query = client.query('SELECT '+columns.join(', ')+' FROM public.tapping');
+    // Stream results back one row at a time
+        query.on('row', function(row) {
+            exportResults.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            done();
+        var headers = {};
+            for (header in exportResults[0]) {
+            headers[header] = header;
+          }
+        var resultWithHeaders = [];
+        resultWithHeaders.push(headers);
+        resultWithHeaders = resultWithHeaders.concat(exportResults);
+        res.csv(resultWithHeaders);
         res.write('received the data:\n\n');
         });
     });

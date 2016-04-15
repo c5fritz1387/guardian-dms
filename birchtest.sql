@@ -220,7 +220,30 @@ CREATE TABLE tapping (
     comments text,
     id integer NOT NULL,
     x_coord real,
-    y_coord real
+    y_coord real,
+    date date,
+    name character varying(20),
+    elevation real,
+    distance1 real,
+    direction1 character varying(20),
+    species1 character varying(20),
+    dbh1 real,
+    distance2 real,
+    direction2 character varying(20),
+    species2 character varying(20),
+    dbh2 real,
+    distance3 real,
+    direction3 character varying(20),
+    species3 character varying(20),
+    dbh3 real,
+    dbh_tree real,
+    height_tree real,
+    growth_info character varying(20),
+    height real,
+    coordinates real,
+    height_crown real,
+    width_crown real,
+    count3m integer
 );
 
 
@@ -246,6 +269,28 @@ ALTER TABLE public.tapping_id_seq OWNER TO c5fritz1387;
 
 ALTER SEQUENCE tapping_id_seq OWNED BY tapping.id;
 
+
+SET default_with_oids = false;
+
+--
+-- Name: tappingdata; Type: TABLE; Schema: public; Owner: c5fritz1387; Tablespace: 
+--
+
+CREATE TABLE tappingdata (
+    tree_id character varying(20),
+    site_id character varying(20),
+    comments text,
+    id integer DEFAULT nextval('tapping_id_seq'::regclass) NOT NULL,
+    date date,
+    name character varying(20),
+    flow real,
+    "time" character varying(20),
+    sugar character varying(20),
+    color character varying(20)
+);
+
+
+ALTER TABLE public.tappingdata OWNER TO c5fritz1387;
 
 --
 -- Name: ogc_fid; Type: DEFAULT; Schema: public; Owner: c5fritz1387
@@ -1566,85 +1611,89 @@ COPY spatial_ref_sys  FROM stdin;
 -- Data for Name: tapping; Type: TABLE DATA; Schema: public; Owner: c5fritz1387
 --
 
-COPY tapping (tree_id, site_id, plot_id, comments, id, x_coord, y_coord) FROM stdin;
-\N	\N	\N	\N	1	\N	\N
-\N	\N	\N	\N	2	\N	\N
-\N	\N	\N	\N	3	\N	\N
-\N	\N	\N	\N	4	\N	\N
-\N	\N	\N	\N	5	\N	\N
-\N	\N	\N	\N	6	\N	\N
-\N	\N	\N	\N	7	\N	\N
-\N	\N	\N	\N	8	\N	\N
-\N	\N	\N	\N	9	\N	\N
-\N	\N	\N	\N	10	\N	\N
-\N	\N	\N	\N	11	\N	\N
-\N	\N	\N	\N	12	\N	\N
-\N	\N	\N	\N	13	\N	\N
-\N	\N	\N	\N	14	\N	\N
-\N	\N	\N	\N	15	\N	\N
-\N	\N	\N	\N	16	\N	\N
-\N	\N	\N	\N	17	\N	\N
-\N	\N	\N	\N	18	\N	\N
-\N	\N	\N	\N	19	\N	\N
-\N	\N	\N	\N	20	\N	\N
-\N	\N	\N	\N	21	\N	\N
-\N	\N	\N	\N	22	\N	\N
-\N	\N	\N	\N	23	\N	\N
-\N	\N	\N	\N	24	\N	\N
-\N	\N	\N	\N	25	\N	\N
-\N	\N	\N	\N	26	\N	\N
-\N	\N	\N	sdfdfefef	27	\N	\N
-\N	\N	\N	sdfsdfdsf	28	\N	\N
-\N	\N	\N	\N	29	\N	\N
-\N	\N	\N	ddddddd	30	\N	\N
-\N	\N	\N	\N	31	\N	\N
-\N	\N	\N	ddfsdfsdfssdf	32	\N	\N
-\N	\N	\N	\N	33	\N	\N
-\N	\N	\N	\N	34	\N	\N
-\N	\N	\N	\N	35	\N	\N
-\N	\N	\N	\N	36	\N	\N
-\N	\N	\N	\N	37	\N	\N
-\N	\N	\N	\N	38	\N	\N
-\N	\N	\N	\N	39	\N	\N
-\N	\N	\N	\N	40	\N	\N
-\N	\N	\N	\N	41	\N	\N
-\N	\N	\N	\N	42	\N	\N
-\N	\N	\N	sdddd	43	\N	\N
-\N	\N	\N	\N	44	\N	\N
-\N	\N	\N	sdfsdfsdfsdf	45	\N	\N
-\N	\N	\N	\N	46	\N	\N
-\N	\N	\N	sdsds	47	\N	\N
-\N	\N	\N	\N	48	\N	\N
-\N	\N	\N	dd	49	\N	\N
-\N	\N	\N	\N	50	\N	\N
-\N	\N	\N	\N	51	\N	\N
-\N	\N	\N	\N	52	\N	\N
-\N	\N	\N	\N	53	\N	\N
-\N	\N	\N	\N	54	\N	\N
-\N	\N	\N	\N	55	\N	\N
-\N	\N	\N	\N	56	\N	\N
-11	\N	\N	\N	57	\N	\N
-333	\N	\N	cfgdfsd	58	\N	\N
-123	BW30	P02	Rough	59	\N	\N
-t01	bw30	p02	rough	60	\N	\N
-\N	\N	\N	\N	61	\N	\N
-\N	\N	\N	\N	62	\N	\N
-\N	\N	\N	\N	63	\N	\N
-sds	sdsd	sdsd	sdsd	64	\N	\N
-T02	BW40	P04	rough	65	\N	\N
-T	4	4	dfgdd	66	\N	\N
-ergdf	dfdsfg	sdfsdfg	sdfgdsfg	67	\N	\N
-sdfs	sdfsd	dsdfsd	sdfsdf	68	\N	\N
-sdsd	sdsd	sdsd	sdsd	69	\N	\N
-dfdf	sdsd	sdsd	sdsd	70	\N	\N
-sdfsdf	sdfsdf	sdfsd	sdf	71	\N	\N
-t	t	t	t	72	\N	\N
-22	22	22	221	73	\N	\N
-33	33	33	33	74	\N	\N
-\N	\N	\N	\N	75	\N	\N
-\N	\N	\N	\N	76	\N	\N
-33	33	33	4444	77	345345	345345
-\N	\N	\N	\N	78	\N	\N
+COPY tapping (tree_id, site_id, plot_id, comments, id, x_coord, y_coord, date, name, elevation, distance1, direction1, species1, dbh1, distance2, direction2, species2, dbh2, distance3, direction3, species3, dbh3, dbh_tree, height_tree, growth_info, height, coordinates, height_crown, width_crown, count3m) FROM stdin;
+\N	\N	\N	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	2	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	4	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	5	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	6	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	7	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	8	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	9	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	11	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	12	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	13	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	14	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	15	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	16	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	17	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	18	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	19	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	20	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	21	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	22	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	23	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	24	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	25	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	26	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	sdfdfefef	27	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	sdfsdfdsf	28	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	29	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	ddddddd	30	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	31	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	ddfsdfsdfssdf	32	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	33	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	34	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	35	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	36	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	37	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	38	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	39	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	40	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	41	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	42	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	sdddd	43	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	44	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	sdfsdfsdfsdf	45	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	46	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	sdsds	47	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	48	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	dd	49	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	50	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	51	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	52	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	53	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	54	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	55	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	56	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+11	\N	\N	\N	57	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+333	\N	\N	cfgdfsd	58	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+123	BW30	P02	Rough	59	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+t01	bw30	p02	rough	60	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	61	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	62	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	63	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+sds	sdsd	sdsd	sdsd	64	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+T02	BW40	P04	rough	65	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+T	4	4	dfgdd	66	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+ergdf	dfdsfg	sdfsdfg	sdfgdsfg	67	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+sdfs	sdfsd	dsdfsd	sdfsdf	68	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+sdsd	sdsd	sdsd	sdsd	69	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+dfdf	sdsd	sdsd	sdsd	70	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+sdfsdf	sdfsdf	sdfsd	sdf	71	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+t	t	t	t	72	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+22	22	22	221	73	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+33	33	33	33	74	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	75	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	76	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+33	33	33	4444	77	345345	345345	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	78	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+t01	BW03	P03	access	89	-64.3300018	45.4500008	\N	Leo	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	90	\N	\N	\N	\N	44543	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\N	\N	\N	\N	91	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+t01	bw30	\N	\N	92	\N	\N	\N	Leo	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -1652,7 +1701,27 @@ t	t	t	t	72	\N	\N
 -- Name: tapping_id_seq; Type: SEQUENCE SET; Schema: public; Owner: c5fritz1387
 --
 
-SELECT pg_catalog.setval('tapping_id_seq', 78, true);
+SELECT pg_catalog.setval('tapping_id_seq', 94, true);
+
+
+--
+-- Data for Name: tappingdata; Type: TABLE DATA; Schema: public; Owner: c5fritz1387
+--
+
+COPY tappingdata (tree_id, site_id, comments, id, date, name, flow, "time", sugar, color) FROM stdin;
+T01	\N	sddd	79	2014-02-02	chas	45.5	\N	\N	\N
+\N	\N	\N	80	\N	\N	\N	\N	\N	\N
+\N	\N	\N	81	2014-03-03	\N	\N	\N	\N	\N
+t02	\N	chas	82	2012-03-03	chas	45.4399986	\N	\N	\N
+\N	\N	\N	83	\N	\N	\N	\N	\N	\N
+\N	\N	\N	84	\N	\N	\N	\N	\N	\N
+\N	\N	\N	85	\N	\N	\N	\N	\N	\N
+\N	\N	\N	86	\N	\N	\N	\N	\N	\N
+t01	bw30	rouch	87	2013-03-04	chas	44.4000015	\N	\N	\N
+T01	BW40	Rough	88	\N	Leo	453.5	\N	\N	\N
+\N	\N	\N	93	\N	\N	\N	\N	\N	\N
+T01	\N	\N	94	\N	evan	0.889999986	\N	44	red
+\.
 
 
 --
@@ -1715,6 +1784,14 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY tapping
     ADD CONSTRAINT tapping_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tappingdata_pkey; Type: CONSTRAINT; Schema: public; Owner: c5fritz1387; Tablespace: 
+--
+
+ALTER TABLE ONLY tappingdata
+    ADD CONSTRAINT tappingdata_pkey PRIMARY KEY (id);
 
 
 --

@@ -1,12 +1,13 @@
 {
   "name": "Guardian DMS",
   "description": "Guardian Program Data Management System",
-  "main": "index.jade",
+  "main": "map.jade",
   "authors": [
     "c5fritz1387 <charles.e.fritz@gmail.com>"
   ],
   "license": "MIT",
   "homepage": "https://github.com/c5fritz1387/geojson-dashboard-EC",
+  "directory":"pubic/bower_components",
   "moduleType": [],
   "private": true,
   "ignore": [
@@ -29,6 +30,12 @@
     "leaflet.markerclusterer": "^0.4.0",
     "leaflet": "^0.7.7",
     "mapbox.js": "^2.3.0",
-    "tableExport.jquery.plugin": "^1.5.0"
+    "tableExport.jquery.plugin": "^1.5.0",
+    "Leaflet.EasyButton": "^1.2.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37"
+  },
+  "resolutions": {
+    "leaflet": "^0.7.7",
+    "esri-leaflet": "^1.0.3"
   }
 }

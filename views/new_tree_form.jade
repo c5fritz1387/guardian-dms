@@ -18,119 +18,181 @@ html(ng-app='new_tree_form')
     |     
     meta(name='author', content='Charles Fritz')
     |     
-    link(href='bower_components/mapbox.js/mapbox.css', rel='stylesheet')
-    |     
-    link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/components-font-awesome/css/font-awesome.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/leaflet/dist/leaflet.css')
-    |     
     link(rel='stylesheet', href='bower_components/bootstrap-table/dist/bootstrap-table.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/c3/c3.min.css')
-    |     
-    link(rel='stylesheet', href='bower_components/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css')
-    |     
-    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.css')
-    |     
-    link(rel='stylesheet', href='bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css')
-    |     
-    link(rel='stylesheet', href='bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css')
-    |     
-    link(rel='stylesheet', href='/vendor/leaflet/leaflet-print/dist/easyPrint.css')
-    |     
     link(rel='stylesheet', href='/stylesheets/app.css')
-    // link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css' rel='stylesheet' /
-    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-    //if lt IE 9
-      script(src='//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-      |       
-      script(src='//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    link(rel='stylesheet', href='/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/components-font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap-table/dist/bootstrap-table.min.css')     
+    link(rel='stylesheet', href='/stylesheets/app.css')
+  
   body(ng-controller='treeController')
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            |             
+            span.icon-bar
+            |             
+            span.icon-bar
+          |           
+          span.navbar-brand.title Guardian DMS
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a#about-btn(href='#', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-question-circle.fa-white
+                |  About
+             li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+                i.fa.fa-tree.fa-white
+                |  
+                span#map Mapping  
+                b.caret
+              |           
+              ul.dropdown-menu
+                li
+                  a(href='/map', data-toggle='collapse', data-target='.navbar-collapse.in', name='map')
+                    i.fa.fa-globe
+                    |  Guardian 2015/16
+                    |                               
+            li.dropdown
+              a.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+                i.fa.fa-tree.fa-white
+                |  
+                span#tapping Birch Tapping  
+                b.caret
+              |           
+              ul.dropdown-menu
+                li
+                  a(href='/addTrees', data-toggle='collapse', data-target='.navbar-collapse.in', name='tapping')
+                    i.fa.fa-plus
+                    |  Add Trees
+                    | 
+                li
+                  a(href='/addData', data-toggle='collapse', data-target='.navbar-collapse.in', name='tapping')
+                    i.fa.fa-plus
+                    |  Add Data
+            li
+              a#logout-btn(href='/logout', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.fa.fa-question-circle.fa-white
+                |  Logout
     .container
       .header
         h1 Add Trees
-        hr
-      .todo-form
-            form
-              .form-group
-              label.col-md-2.control-label(for='tree_id') Tree ID
-              .col-md-2
-                input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
-                .form-group
-              label.col-md-2.control-label(for='site_id') Site ID
-              .col-md-2
-                input.form-control.input-md(id='site_id', type='text', placeholder='e.g BW40', ng-model='formData.site_id')
-                .form-group
-              label.col-md-2.control-label(for='plot_id') Plot ID
-              .col-md-2
-                input.form-control.input-md(id='plot_id', type='text', placeholder='e.g P03', ng-model='formData.plot_id')
-                .form-group
-              label.col-md-2.control-label(for='x_coord') X Coordinate
-              .col-md-2
-                input.form-control.input-md(id='x_coord', type='text', placeholder='e.g -83.3435', ng-model='formData.x_coord')
-                .form-group
-              label.col-md-2.control-label(for='y_coord') Y Coordinate
-              .col-md-2
-                input.form-control.input-md(id='y_coord', type='text', placeholder='e.g 45.4543', ng-model='formData.y_coord')
-                .form-group
-              label.col-md-2.control-label(for='comments') Comments
-              .col-md-2
-                input.form-control.input-md(id='comments', type='text', placeholder='Access', ng-model='formData.comments')
-              .col-md-2
-              button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addTree()') Add Tree to Database
+      form.form-inline
+      .form-group
+        label.col-md-2.control-label(for='date') Date of Observation
+          #datetimepicker1.input-group.date
+            input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
+            span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+      .form-group
+        label.col-md-2.control-label(for='name') Recorder
+          input.form-control.input-md(id='name', type='text', placeholder='e.g. Leo Lepiano', ng-model='formData.name')
+      .form-group
+        label.col-md-2.control-label(for='tree_id') Tree ID
+          input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
+      .form-group
+        label.col-md-2.control-label(for='site_id') Site ID
+          input.form-control.input-md(id='site_id', type='text', placeholder='e.g BW40', ng-model='formData.site_id')
+      .form-group
+        label.col-md-2.control-label(for='plot_id') Plot ID
+          input.form-control.input-md(id='plot_id', type='text', placeholder='e.g P03', ng-model='formData.plot_id')
+      .form-group
+        label.col-md-2.control-label(for='x_coord') X Coordinate
+          input.form-control.input-md(id='x_coord', type='text', placeholder='e.g -83.3435', ng-model='formData.x_coord')
+      .form-group
+        label.col-md-2.control-label(for='y_coord') Y Coordinate
+          input.form-control.input-md(id='y_coord', type='text', placeholder='e.g 45.4543', ng-model='formData.y_coord')
+      .form-group
+        label.col-md-2.control-label(for='elevation') Elevation
+          input.form-control.input-md(id='elevation', type='text', placeholder='500.354m', ng-model='formData.elevation')
+      .form-group
+        label.col-md-2.control-label(for='comments') Comments
+          input.form-control.input-md(id='comments', type='text', placeholder='Access', ng-model='formData.comments')
+  .container
+    .header
+      h2 Location triangulation by three nearest stems:
+      .form-group
+        label.col-md-2.control-label(for='distance1') Distance #1
+          input.form-control.input-md(id='distance1', type='text', placeholder='e.g. 5m', ng-model='formData.distance1')
+      .form-group
+        label.col-md-2.control-label(for='direction1') Direction #1
+          input.form-control.input-md(id='species1', type='text', placeholder='N, S, E, W, N', ng-model='formData.direction1')
+      .form-group
+        label.col-md-2.control-label(for='species1') Species #1
+          input.form-control.input-md(id='species1', type='text', placeholder='Balsam Fir, Poplar', ng-model='formData.species1')
+      .form-group
+        label.col-md-2.control-label(for='dbh1') DBH #1
+          input.form-control.input-md(id='dbh1', type='text', placeholder='e.g 23cm', ng-model='formData.dbh1')
+      .form-group
+        label.col-md-2.control-label(for='distance2') Distance #2
+          input.form-control.input-md(id='distance2', type='text', placeholder='e.g. 5m', ng-model='formData.distance2')
+      .form-group
+        label.col-md-2.control-label(for='direction2') Direction #2
+          input.form-control.input-md(id='direction2', type='text', placeholder='N, S, E, W, NW', ng-model='formData.direction2')
+      .form-group
+        label.col-md-2.control-label(for='species2') Species #2
+          input.form-control.input-md(id='species2', type='text', placeholder='Balsam Fir, Poplar', ng-model='formData.species2')
+      .form-group
+        label.col-md-2.control-label(for='dbh2') DBH #2
+          input.form-control.input-md(id='dbh2', type='text', placeholder='e.g 23cm', ng-model='formData.dbh2')
+      .form-group
+        label.col-md-2.control-label(for='distance3') Distance #3
+          input.form-control.input-md(id='distance3', type='text', placeholder='e.g. 5m', ng-model='formData.distance3')
+      .form-group
+        label.col-md-2.control-label(for='direction3') Direction #3
+          input.form-control.input-md(id='direction3', type='text', placeholder='N, S, E, W, NW', ng-model='formData.direction3')
+      .form-group
+        label.col-md-2.control-label(for='species3') Species #3
+          input.form-control.input-md(id='species3', type='text', placeholder='Balsam Fir, Poplar', ng-model='formData.species3')
+      .form-group
+        label.col-md-2.control-label(for='dbh3') DBH #3
+          input.form-control.input-md(id='dbh3', type='text', placeholder='e.g 23cm', ng-model='formData.dbh3')
+  .container
+    .header
+      h2 Info on tapped tree:
+      .form-group
+        label.col-md-2.control-label(for='dbh_tree') DBH of Tree
+          input.form-control.input-md(id='dbh_tree', type='text', placeholder='45cm', ng-model='formData.dbh_tree')
+      .form-group
+        label.col-md-2.control-label(for='height_tree') Height of Tree
+          input.form-control.input-md(id='height_tree', type='text', placeholder='45cm', ng-model='formData.height_tree')
+      .form-group
+        label.col-md-2.control-label(for='growth_info') Growth Information
+          input.form-control.input-md(id='growth_info', type='text', placeholder='multiple or single stem', ng-model='formData.growth_info')
+  .container
+    .header
+      h3 Spile Position: 
+      .form-group
+        label.col-md-2.control-label(for='height') Height above ground
+          input.form-control.input-md(id='height', type='text', placeholder='meters', ng-model='formData.height')
+      .form-group
+        label.col-md-2.control-label(for='coordinates') coordinates
+          input.form-control.input-md(id='coordinates', type='text', placeholder='315', ng-model='formData.coordinates')
+  .container
+    .header
+      h3 Misc Information:
+      .form-group
+        label.col-md-2.control-label(for='height_crown') Height of crown ball
+          input.form-control.input-md(id='height_crown', type='text', placeholder='e.g. 5 meters', ng-model='formData.height_crown')
+      .form-group
+        label.col-md-2.control-label(for='width_crown') Width of crown ball 
+          input.form-control.input-md(id='width_crown', type='text', placeholder='10m', ng-model='formData.width_crown')
+      .form-group
+        label.col-md-2.control-label(for='count3m') Count of BW within 3m
+          input.form-control.input-md(id='count3m', type='text', placeholder='e.g 5', ng-model='formData.count3m')
 
-              //.todo-list
-              //ul(ng-repeat='todo in treeData')
-                li
-                  h3
-                    input.lead(type='checkbox', ng-click='deleteTodo(treeData.id)')
-                    |  {{ treeData.site_id }}
-                hr//
+      button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addTree()') Add Tree to Database
+      button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='exportTrees()') Export Csv from Database
 
 
-    // scripts
-    
-    script(src='/bower_components/mapbox.js/mapbox.js')
-    |     
     script(src='/bower_components/jquery/dist/jquery.min.js')
-    |    
-    //script(src='/vendor/leaflet/Leaflet.js')
-    |     
-    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
-    |     
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js') 
     script(src='/bower_components/bootstrap-table/dist/bootstrap-table.min.js')
-    |     
-    script(src='/bower_components/d3/d3.min.js')
-    |     
-    script(src='/bower_components/c3/c3.min.js')
-    |     
-    script(src='/bower_components/esri-leaflet/dist/esri-leaflet.js')
-    |     
-    script(src='/vendor/esri/esri-leaflet-geocoder.js')
-    |     
-    script(src='/bower_components/alasql/dist/alasql.min.js')
-    |     
-    script(src='/bower_components/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js')
-    |     
-    script(src='/bower_components/tableExport.jquery.plugin/tableExport.min.js')
-    |     
-    script(src='/bower_components/file-saver.js/FileSaver.js')
-    |     
-    script(src='/bower_components/html2canvas/build/html2canvas.min.js')
-    |     
-    script(src='/bower_components/jspdf/dist/jspdf.min.js')
-    |     
-    script(src='/bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js')
-    |     
-    script(src='/vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js')
-    |     
-    script(src='/javascripts/leaflet-markercluster.js')
-    |     
-    script(src='/javascripts/export.js')
-    // script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script
-    script(src='http://code.jquery.com/jquery-1.11.2.min.js', type='text/javascript')
-    script(src='http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js', type='text/javascript')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.12/angular.min.js')
+    script(src='/bower_components/moment/min/moment.min.js')
+    script(src='/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')
     script(src='javascripts/new_tree.js')
