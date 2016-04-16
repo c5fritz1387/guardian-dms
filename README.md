@@ -21,10 +21,17 @@ pg_dump db_name > dump.sql
 
 copy the file, dump.sql to somewhere you want it to go. on the new machine,
 
+# create db
 ```
 createdb -T template_postgis db_name
 psql db_name < dump.sql
 ```
+#start the process
 
+````
+nohup supervisor &
+ps ax | grep super
+nohup npm start &
+tail -f nohup.out
 
-
+`````
