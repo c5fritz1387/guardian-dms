@@ -74,7 +74,6 @@ html(ng-app='daily_record_form')
                   a(href='/addData', data-toggle='collapse', data-target='.navbar-collapse.in', name='tapping')
                     i.fa.fa-plus
                     |  Add Data
-                    |
             li
               a#logout-btn(href='/logout', data-toggle='collapse', data-target='.navbar-collapse.in')
                 i.fa.fa-question-circle.fa-white
@@ -90,16 +89,10 @@ html(ng-app='daily_record_form')
 
     .form-group
         label.col-md-2.control-label(for='date') Date of Observation
-          #datetimepicker1.input-group.date
             input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
-            span.input-group-addon
-                span.glyphicon.glyphicon-calendar
     .form-group
         label.col-md-2.control-label(for='time') Time of Observation
-          #datetimepicker2.input-group.date
             input.form-control.input-md(id='time', type='text', placeholder='e.g. 04/23/2016 21:00', ng-model='formData.time')
-            span.input-group-addon
-                span.glyphicon.glyphicon-calendar
     .form-group
         label.col-md-2.control-label(for='flow ') Quantity
           input.form-control.input-md(id='flow', type='text', placeholder='e.g .79 liters', ng-model='formData.flow')
