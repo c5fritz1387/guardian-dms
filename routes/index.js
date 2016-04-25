@@ -11,7 +11,7 @@ var crypto = require('crypto');
 
 //psql package import
 var pg = require("pg");
-var conString = "postgres://c5fritz1387:password@localhost:5432/BirchTest";
+var conString = "postgres://c5fritz1387:password@localhost:5432/birchtest";
 
 
 module.exports = function(app, passport) {
