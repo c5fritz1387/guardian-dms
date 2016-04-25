@@ -35,13 +35,6 @@ angular.module('new_tree_form', [])
 }
 
 
-$(function () {
-          $('#datetimepicker1').datetimepicker({
-            format: 'DD/MM/YYYY'
-          });
-
-          });
-
 });
 
 

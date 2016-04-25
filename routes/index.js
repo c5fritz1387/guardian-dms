@@ -11,7 +11,7 @@ var crypto = require('crypto');
 
 //psql package import
 var pg = require("pg");
-var conString = "postgres://c5fritz1387:password@localhost:5432/BirchTest";
+var conString = "postgres://c5fritz1387:password@localhost:5432/birchtest";
 
 
 module.exports = function(app, passport) {
@@ -221,7 +221,7 @@ app.post('/dataAdded', isLoggedIn, function (req, res) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO public.tappingdata(date, time,name, tree_id, flow, sugar, color) values($1, $2, $3, $4, $5, $6, $7)", [data.date, data.time, data.name, data.tree_id, data.flow, data.sugar, data.color]);  
+        client.query("INSERT INTO public.tappingdata(date, time, name, tree_id, flow, sugar, color) values($1, $2, $3, $4, $5, $6, $7)", [data.date, data.time, data.name, data.tree_id, data.flow, data.sugar, data.color]);  
         // SQL Query > Select Data
         var query = client.query("SELECT * FROM public.tappingdata ORDER BY id ASC");
 
@@ -256,7 +256,7 @@ app.get('/exportData',isLoggedIn, function (req, res){
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
-    var columns = ['date', 'time','name', 'tree_id', 'flow', 'sugar', 'color'];
+    var columns = ['date', 'time','name','tree_id', 'flow', 'sugar', 'color'];
 
     var query = client.query('SELECT '+columns.join(', ')+' FROM public.tappingdata');
     // Stream results back one row at a time
@@ -336,9 +336,10 @@ app.get('/exportTrees',isLoggedIn, function (req, res){
         failureFlash : true // allow flash messages
     }));
 
+    /*
     // SIGNUP =================================
     // show the signup form
-    /*app.get('/signup', function(req, res) {
+    app.get('/signup', function(req, res) {
         res.render('signup', { message: req.flash('loginMessage') });
     });
 

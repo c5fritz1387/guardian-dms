@@ -32,16 +32,6 @@ angular.module('daily_record_form', [])
 });
 }
 
-$(function () {
-          $('#datetimepicker1').datetimepicker({
-            format: 'DD/MM/YYYY'
-          });
-
-          });
-$(function () {
-          $('#datetimepicker2').datetimepicker();
-
-          });
 
 });
 
