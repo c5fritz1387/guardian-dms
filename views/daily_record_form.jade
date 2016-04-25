@@ -79,35 +79,34 @@ html(ng-app='daily_record_form')
                 i.fa.fa-question-circle.fa-white
                 |  Logout 
     .container
-      .header
-        h1 Add Trees
-      form.form-inline
+        .header
+            h1 Add Trees
+            form.form-inline
     
-        .form-group
-            label.col-md-2.control-label(for='tree_id ') Tree ID
-              input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
+            .form-group
+                label.col-md-2.control-label(for='tree_id ') Tree ID
+                    input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
+            .form-group
+                label.col-md-2.control-label(for='date') Date of Observation
+                    input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
+            .form-group
+                label.col-md-2.control-label(for='time') Time of Observation
+                    input.form-control.input-md(id='time', type='text', placeholder='e.g. 21:00', ng-model='formData.time')
+            .form-group
+                label.col-md-2.control-label(for='flow ') Quantity
+                    input.form-control.input-md(id='flow', type='text', placeholder='e.g .79 liters', ng-model='formData.flow')
+            .form-group
+                label.col-md-2.control-label(for='sugar') Sugar
+                    input.form-control.input-md(id='sugar', type='text', placeholder='', ng-model='formData.sugar')
+            .form-group
+                label.col-md-2.control-label(for='color') Color
+                    input.form-control.input-md(id='color', type='text', placeholder='', ng-model='formData.color')
+            .form-group
+                label.col-md-2.control-label(for='name') Recorder
+                    input.form-control.input-md(id='name', type='text', placeholder='e.g. Leo Lepiano', ng-model='formData.name')
 
-        .form-group
-            label.col-md-2.control-label(for='date') Date of Observation
-                input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
-        .form-group
-            label.col-md-2.control-label(for='time') Time of Observation
-                input.form-control.input-md(id='time', type='text', placeholder='e.g. 21:00', ng-model='formData.time')
-        .form-group
-            label.col-md-2.control-label(for='flow ') Quantity
-              input.form-control.input-md(id='flow', type='text', placeholder='e.g .79 liters', ng-model='formData.flow')
-        .form-group
-            label.col-md-2.control-label(for='sugar') Sugar
-              input.form-control.input-md(id='sugar', type='text', placeholder='', ng-model='formData.sugar')
-        .form-group
-            label.col-md-2.control-label(for='color') Color
-              input.form-control.input-md(id='color', type='text', placeholder='', ng-model='formData.color')
-        .form-group
-            label.col-md-2.control-label(for='name') Recorder
-              input.form-control.input-md(id='name', type='text', placeholder='e.g. Leo Lepiano', ng-model='formData.name')
-
-          button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addData()') Add daily record to database
-          button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='exportData()') Export Csv from database
+              button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addData()') Add daily record to database
+              button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='exportData()') Export Csv from database
 
 
     script(src='/bower_components/jquery/dist/jquery.min.js')
