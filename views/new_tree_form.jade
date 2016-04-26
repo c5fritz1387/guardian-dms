@@ -104,8 +104,8 @@ html(ng-app='new_tree_form')
         label.col-md-2.control-label(for='y_coord') Y Coordinate
           input.form-control.input-md(id='y_coord', type='text', placeholder='e.g 45.4543', ng-model='formData.y_coord')
       .form-group
-        label.col-md-2.control-label(for='elevation') Elevation
-          input.form-control.input-md(id='elevation', type='text', placeholder='500.354m', ng-model='formData.elevation')
+        label.col-md-2.control-label(for='elevation') Elevation(meters)
+          input.form-control.input-md(id='elevation', type='text', placeholder='500.354', ng-model='formData.elevation')
       .form-group
         label.col-md-2.control-label(for='comments') Comments
           input.form-control.input-md(id='comments', type='text', placeholder='Access', ng-model='formData.comments')
@@ -113,8 +113,8 @@ html(ng-app='new_tree_form')
     .header
       h2 Location triangulation by three nearest stems:
       .form-group
-        label.col-md-2.control-label(for='distance1') Distance #1
-          input.form-control.input-md(id='distance1', type='text', placeholder='e.g. 5m', ng-model='formData.distance1')
+        label.col-md-2.control-label(for='distance1') Distance #1 (meters)
+          input.form-control.input-md(id='distance1', type='text', placeholder='e.g. 5', ng-model='formData.distance1')
       .form-group
         label.col-md-2.control-label(for='direction1') Direction #1
           input.form-control.input-md(id='species1', type='text', placeholder='N, S, E, W, NW', ng-model='formData.direction1')
@@ -122,11 +122,11 @@ html(ng-app='new_tree_form')
         label.col-md-2.control-label(for='species1') Species #1
           input.form-control.input-md(id='species1', type='text', placeholder='B,BW,At', ng-model='formData.species1')
       .form-group
-        label.col-md-2.control-label(for='dbh1') DBH #1
-          input.form-control.input-md(id='dbh1', type='text', placeholder='e.g 23cm', ng-model='formData.dbh1')
+        label.col-md-2.control-label(for='dbh1') DBH #1 (cm)
+          input.form-control.input-md(id='dbh1', type='text', placeholder='e.g 23', ng-model='formData.dbh1')
       .form-group
-        label.col-md-2.control-label(for='distance2') Distance #2
-          input.form-control.input-md(id='distance2', type='text', placeholder='e.g. 5m', ng-model='formData.distance2')
+        label.col-md-2.control-label(for='distance2') Distance #2 (meters)
+          input.form-control.input-md(id='distance2', type='text', placeholder='e.g. 5', ng-model='formData.distance2')
       .form-group
         label.col-md-2.control-label(for='direction2') Direction #2
           input.form-control.input-md(id='direction2', type='text', placeholder='N, S, E, W, NW', ng-model='formData.direction2')
@@ -134,11 +134,11 @@ html(ng-app='new_tree_form')
         label.col-md-2.control-label(for='species2') Species #2
           input.form-control.input-md(id='species2', type='text', placeholder='B,BW,At', ng-model='formData.species2')
       .form-group
-        label.col-md-2.control-label(for='dbh2') DBH #2
-          input.form-control.input-md(id='dbh2', type='text', placeholder='e.g 23cm', ng-model='formData.dbh2')
+        label.col-md-2.control-label(for='dbh2') DBH #2 (cm)
+          input.form-control.input-md(id='dbh2', type='text', placeholder='e.g 23', ng-model='formData.dbh2')
       .form-group
-        label.col-md-2.control-label(for='distance3') Distance #3
-          input.form-control.input-md(id='distance3', type='text', placeholder='e.g. 5m', ng-model='formData.distance3')
+        label.col-md-2.control-label(for='distance3') Distance #3 (meters)
+          input.form-control.input-md(id='distance3', type='text', placeholder='e.g. 5', ng-model='formData.distance3')
       .form-group
         label.col-md-2.control-label(for='direction3') Direction #3
           input.form-control.input-md(id='direction3', type='text', placeholder='N, S, E, W, NW', ng-model='formData.direction3')
@@ -146,17 +146,17 @@ html(ng-app='new_tree_form')
         label.col-md-2.control-label(for='species3') Species #3
           input.form-control.input-md(id='species3', type='text', placeholder='B,BW,At', ng-model='formData.species3')
       .form-group
-        label.col-md-2.control-label(for='dbh3') DBH #3
-          input.form-control.input-md(id='dbh3', type='text', placeholder='e.g 23cm', ng-model='formData.dbh3')
+        label.col-md-2.control-label(for='dbh3') DBH #3 (cm)
+          input.form-control.input-md(id='dbh3', type='text', placeholder='e.g 23', ng-model='formData.dbh3')
   .container
     .header
       h2 Info on tapped tree:
       .form-group
-        label.col-md-2.control-label(for='dbh_tree') DBH of Tree
-          input.form-control.input-md(id='dbh_tree', type='text', placeholder='45cm', ng-model='formData.dbh_tree')
+        label.col-md-2.control-label(for='dbh_tree') DBH of Tree (cm)
+          input.form-control.input-md(id='dbh_tree', type='text', placeholder='45', ng-model='formData.dbh_tree')
       .form-group
-        label.col-md-2.control-label(for='height_tree') Height of Tree
-          input.form-control.input-md(id='height_tree', type='text', placeholder='45cm', ng-model='formData.height_tree')
+        label.col-md-2.control-label(for='height_tree') Height of Tree (cm)
+          input.form-control.input-md(id='height_tree', type='text', placeholder='45', ng-model='formData.height_tree')
       .form-group
         label.col-md-2.control-label(for='growth_info') Growth Information
           input.form-control.input-md(id='growth_info', type='text', placeholder='multiple or single stem', ng-model='formData.growth_info')
@@ -173,14 +173,14 @@ html(ng-app='new_tree_form')
     .header
       h3 Misc Information:
       .form-group
-        label.col-md-2.control-label(for='height_crown') Height of crown ball
-          input.form-control.input-md(id='height_crown', type='text', placeholder='e.g. 5 meters', ng-model='formData.height_crown')
+        label.col-md-2.control-label(for='height_crown') Height of crown ball (meters)
+          input.form-control.input-md(id='height_crown', type='text', placeholder='5', ng-model='formData.height_crown')
       .form-group
-        label.col-md-2.control-label(for='width_crown') Width of crown ball 
-          input.form-control.input-md(id='width_crown', type='text', placeholder='10m', ng-model='formData.width_crown')
+        label.col-md-2.control-label(for='width_crown') Width of crown ball (meters)
+          input.form-control.input-md(id='width_crown', type='text', placeholder='10', ng-model='formData.width_crown')
       .form-group
         label.col-md-2.control-label(for='count3m') Count of BW within 3m
-          input.form-control.input-md(id='count3m', type='text', placeholder='e.g 5', ng-model='formData.count3m')
+          input.form-control.input-md(id='count3m', type='text', placeholder='5', ng-model='formData.count3m')
 
       button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='addTree()') Add Tree to Database
       button.btn.btn-primary.btn-sm.btn-block(type='submit', ng-click='exportTrees()') Export Csv from Database
