@@ -1717,3 +1717,5 @@ Executing (default): SELECT "id", "localemail", "localpassword", "createdAt", "u
 [0mGET /stylesheets/style.css [33m404 [0m34.946 ms - 1643[0m
 [0mGET / [36m304 [0m69.774 ms - -[0m
 [0mGET /stylesheets/style.css [33m404 [0m25.128 ms - 1643[0m
+[0mGET / [32m200 [0m60.392 ms - 925[0m
+[0mGET /stylesheets/style.css [33m404 [0m24.633 ms - 1643[0m
