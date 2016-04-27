@@ -81,7 +81,7 @@ app.get('/logout', function(req, res) {
 
 /*process new tree form*/
 
-app.post('/treeAdded',/*isLoggedIn,*/ function (req, res) {
+app.post('/treeAdded',isLoggedIn, function (req, res) {
 
     var results = [];
 
