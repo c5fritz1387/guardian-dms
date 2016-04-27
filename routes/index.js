@@ -45,7 +45,7 @@ app.get('/', function(req, res) {
 
 
 /* get new tree form */
-app.get('/addTrees', /*isLoggedIn,*/ function (req, res) {
+app.get('/addTrees', isLoggedIn, function (req, res) {
 
       res.render('new_tree_form', {
         title: 'Add New Trees',
