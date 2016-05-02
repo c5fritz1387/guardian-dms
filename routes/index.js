@@ -282,7 +282,7 @@ app.get('/exportData',/*isLoggedIn,*/ function (req, res){
     res.render
 });
 
-app.get('/exportTrees',/*isLoggedIn*/, function (req, res){
+app.get('/exportTrees',/*isLoggedIn*/ function (req, res){
     
     var exportResults = [];
 
