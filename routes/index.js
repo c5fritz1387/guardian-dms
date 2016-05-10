@@ -282,7 +282,7 @@ app.get('/exportData',/*isLoggedIn,*/ function (req, res){
     res.render
 });
 
-app.get('/exportTrees',/*isLoggedIn*/, function (req, res){
+app.get('/exportTrees',/*isLoggedIn*/ function (req, res){
     
     var exportResults = [];
 
@@ -321,6 +321,10 @@ app.get('/exportTrees',/*isLoggedIn*/, function (req, res){
     res.render
 });
 
+//render admin form
+    app.get('/admin', function(req, res) {
+        res.render('admin', { message: req.flash('loginMessage') });
+    });
 
 // locally --------------------------------
 // LOGIN ===============================
