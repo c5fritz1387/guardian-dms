@@ -52,7 +52,6 @@ $ ./postgrest
 ```````````````
 open up commandline and run the shell script postgrest.sh with nohup:
 nohup sh postgrest.sh &
-postgrest postgres://user:pass@host:port/db -a anon_user [other flags]
 ````````````
 #Todo
 ````
