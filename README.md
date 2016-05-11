@@ -50,6 +50,10 @@ $ ./postgrest
 #Running postgrest
 
 ```````````````
+open up commandline and run the shell script postgrest.sh with nohup:
+nohup sh postgrest.sh &
 postgrest postgres://user:pass@host:port/db -a anon_user [other flags]
 ````````````
-
+#Todo
+````
+create docker environment to run postgrest or configure postgrest shell script to run in background

@@ -2471,3 +2471,8 @@ Listening on port 5000
 127.0.0.1 - - [03/May/2016:22:18:07 -0700] "GET /users HTTP/1.1" 200 - "http://localhost:3000/admin" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/49.0.2623.108 Chrome/49.0.2623.108 Safari/537.36"
 127.0.0.1 - - [03/May/2016:22:18:09 -0700] "GET /users HTTP/1.1" 200 - "http://localhost:3000/admin" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/49.0.2623.108 Chrome/49.0.2623.108 Safari/537.36"
 127.0.0.1 - - [03/May/2016:22:22:44 -0700] "GET /users HTTP/1.1" 200 - "" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/49.0.2623.108 Chrome/49.0.2623.108 Safari/537.36"
+nohup: missing operand
+Try 'nohup --help' for more information.
+WARNING, running in insecure mode, JWT secret is the default value
+Listening on port 5000
+postgrest: bind: resource busy (Address already in use)
