@@ -34,4 +34,22 @@ ps ax | grep super
 nohup npm start &
 tail -f nohup.out
 
-`````
+```````````
+#postgrest installation
+````````````
+# Untar the release (available at https://github.com/begriffs/postgrest/releases/latest)
+
+$ tar zxf postgrest-[version]-[platform].tar.xz
+
+# Try running it
+$ ./postgrest
+
+# You should see a usage help message
+
+````````````````
+#Running postgrest
+
+```````````````
+postgrest postgres://user:pass@host:port/db -a anon_user [other flags]
+````````````
+
