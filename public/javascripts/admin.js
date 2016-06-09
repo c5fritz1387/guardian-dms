@@ -80,9 +80,7 @@ app.config(function (NgAdminConfigurationProvider) {
         .fields([
             nga.field('id'),
             nga.field('localemail'),
-            nga.field('localpassword'),
-            nga.field('createdAt'),
-            nga.field('updatedAt')
+
         ]);
 
     user.listView()
@@ -128,11 +126,6 @@ app.config(function (NgAdminConfigurationProvider) {
             nga.field('tree_id'),
             nga.field('site_id'),
             nga.field('plot_id'),
-            nga.field('comments'),
-            nga.field('y_coord'),
-            nga.field('x_coord'),
-            nga.field('date'),
-            nga.field('name')
         ]);
 
     trees.listView()
