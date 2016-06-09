@@ -4697,3 +4697,56 @@ Executing (default): SELECT "id", "localemail", "localpassword", "createdAt", "u
 [0mGET /logout [36m302 [0m29.703 ms - 46[0m
 [0mGET / [36m304 [0m115.910 ms - -[0m
 [0mGET /stylesheets/style.css [33m404 [0m40.856 ms - 1643[0m
+[0mGET / [32m200 [0m106.709 ms - 925[0m
+[0mGET /stylesheets/style.css [33m404 [0m32.351 ms - 1643[0m
+Executing (default): SELECT "id", "localemail", "localpassword", "createdAt", "updatedAt" FROM "users" AS "users" WHERE "users"."localemail" = 'charles@ecotrust.ca' LIMIT 1;
+[0mPOST /login [36m302 [0m96.942 ms - 52[0m
+Executing (default): SELECT "id", "localemail", "localpassword", "createdAt", "updatedAt" FROM "users" AS "users" WHERE "users"."id" = 6;
+[0mGET /map [32m200 [0m700.235 ms - 13727[0m
+[0mGET /bower_components/mapbox.js/mapbox.css [32m200 [0m16.851 ms - 28614[0m
+[0mGET /bower_components/c3/c3.min.css [32m200 [0m10.887 ms - 1972[0m
+[0mGET /bower_components/bootstrap/dist/css/bootstrap.min.css [32m200 [0m30.439 ms - 121260[0m
+[0mGET /bower_components/components-font-awesome/css/font-awesome.min.css [32m200 [0m12.870 ms - 27466[0m
+[0mGET /bower_components/leaflet/dist/leaflet.css [32m200 [0m19.634 ms - 10183[0m
+[0mGET /bower_components/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css [32m200 [0m5.159 ms - 2800[0m
+[0mGET /bower_components/Leaflet.EasyButton/src/easy-button.css [32m200 [0m22.046 ms - 995[0m
+[0mGET /bower_components/leaflet.markerclusterer/dist/MarkerCluster.Default.css [32m200 [0m9.538 ms - 1287[0m
+[0mGET /bower_components/leaflet.markerclusterer/dist/MarkerCluster.css [32m200 [0m11.210 ms - 366[0m
+[0mGET /vendor/leaflet/leaflet-print/dist/easyPrint.css [32m200 [0m7.754 ms - 279[0m
+[0mGET /bower_components/jQuery-QueryBuilder/dist/css/query-builder.default.min.css [32m200 [0m14.528 ms - 2767[0m
+[0mGET /bower_components/bootstrap-table/dist/bootstrap-table.min.css [32m200 [0m38.745 ms - 5517[0m
+[0mGET /stylesheets/app.css [32m200 [0m8.483 ms - 2056[0m
+[0mGET /vendor/leaflet/leaflet-legend.css [32m200 [0m18.634 ms - 662[0m
+[0mGET /bower_components/mapbox.js/mapbox.js [32m200 [0m14.841 ms - 198556[0m
+[0mGET /bower_components/jquery/dist/jquery.min.js [32m200 [0m9.999 ms - 85659[0m
+[0mGET /bower_components/bootstrap/dist/js/bootstrap.min.js [32m200 [0m3.367 ms - 36868[0m
+[0mGET /bower_components/bootstrap-table/dist/bootstrap-table.min.js [32m200 [0m4.151 ms - 50365[0m
+[0mGET /bower_components/d3/d3.min.js [32m200 [0m12.407 ms - 150180[0m
+[0mGET /bower_components/c3/c3.min.js [32m200 [0m5.422 ms - 137275[0m
+[0mGET /bower_components/esri-leaflet/dist/esri-leaflet.js [32m200 [0m6.256 ms - 57563[0m
+[0mGET /vendor/esri/esri-leaflet-geocoder.js [32m200 [0m3.624 ms - 17948[0m
+[0mGET /bower_components/alasql/dist/alasql.min.js [32m200 [0m24.023 ms - 414768[0m
+[0mGET /bower_components/jQuery-QueryBuilder/dist/js/query-builder.standalone.min.js [32m200 [0m14.350 ms - 62885[0m
+[0mGET /bower_components/components-font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0 [32m200 [0m23.854 ms - 66624[0m
+[0mGET /bower_components/Leaflet.EasyButton/src/easy-button.js [32m200 [0m11.729 ms - 9675[0m
+[0mGET /bower_components/file-saver.js/FileSaver.js [32m200 [0m17.220 ms - 7956[0m
+[0mGET /bower_components/tableExport.jquery.plugin/tableExport.min.js [32m200 [0m26.017 ms - 19368[0m
+[0mGET /bower_components/html2canvas/build/html2canvas.min.js [32m200 [0m8.750 ms - 36985[0m
+[0mGET /bower_components/jspdf-autotable/dist/jspdf.plugin.autotable.js [32m200 [0m7.956 ms - 15163[0m
+[0mGET /vendor/leaflet/leaflet-print/dist/leaflet.easyPrint.js [32m200 [0m8.018 ms - 1145[0m
+[0mGET /vendor/leaflet/leaflet-legend.js [32m200 [0m5.499 ms - 2132[0m
+[0mGET /javascripts/leaflet-markercluster.js [32m200 [0m4.745 ms - 60519[0m
+[0mGET /bower_components/jspdf/dist/jspdf.min.js [32m200 [0m12.244 ms - 116720[0m
+[0mGET /javascripts/map.js [32m200 [0m10.424 ms - 28353[0m
+[0mGET /javascripts/export.js [32m200 [0m15.240 ms - 872[0m
+Executing (default): SELECT "id", "localemail", "localpassword", "createdAt", "updatedAt" FROM "users" AS "users" WHERE "users"."id" = 6;
+[0mGET /javascripts/FieldNotes.geojson [32m200 [0m6.575 ms - 66965[0m
+[0mGET /bower_components/mapbox.js/images/icons-000000@2x.png [32m200 [0m5.538 ms - 1410[0m
+[0mGET /vendor/leaflet/leaflet-print/dist/print.png [32m200 [0m10.244 ms - 219[0m
+[0mGET /bower_components/esri-leaflet-geocoder/dist/img/search.png [32m200 [0m30.973 ms - 425[0m
+[0mGET /pg/plots [32m200 [0m280.375 ms - 1533673[0m
+[0mGET /bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2 [32m200 [0m2.593 ms - 18028[0m
+Executing (default): SELECT "id", "localemail", "localpassword", "createdAt", "updatedAt" FROM "users" AS "users" WHERE "users"."id" = 6;
+[0mGET /logout [36m302 [0m5.199 ms - 46[0m
+[0mGET / [36m304 [0m63.038 ms - -[0m
+[0mGET /stylesheets/style.css [33m404 [0m27.008 ms - 1643[0m
