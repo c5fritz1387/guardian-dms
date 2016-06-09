@@ -39,7 +39,7 @@ app.get('/pg/plots', isLoggedIn, function (req, res) {
 });
 
 /* GET field notes data. */
-app.get('/pg/fieldnotes', isLoggedIn, function (req, res) {
+/*app.get('/pg/fieldnotes', isLoggedIn, function (req, res) {
         var client = new pg.Client(conString);
         client.connect();         
 
@@ -58,7 +58,7 @@ app.get('/pg/fieldnotes', isLoggedIn, function (req, res) {
             res.send(result.rows[0].row_to_json);
             res.end();
         });
-});
+});*/
 // show the home page (will also have our login links)
 app.get('/', function(req, res) {
     res.render('index');

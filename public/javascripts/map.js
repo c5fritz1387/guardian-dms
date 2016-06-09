@@ -8,7 +8,7 @@ var config = {
 };
 
 var config_field = {
-    geojson: "pg/fieldnotes", //birchplot.js needs to be saved to birchplot.geojson
+    geojson: "javascripts/FieldNotes.geojson", //birchplot.js needs to be saved to birchplot.geojson
     title: "Guardian Program Data Management System",
     layerName: "Field Notes",
 };
