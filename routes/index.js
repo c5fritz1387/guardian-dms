@@ -45,7 +45,7 @@ app.get('/', function(req, res) {
 
 
 /* get new tree form */
-app.get('/addTrees', /*isLoggedIn,*/ function (req, res) {
+app.get('/addTrees', isLoggedIn, function (req, res) {
 
       res.render('new_tree_form', {
         title: 'Add New Trees',
@@ -81,7 +81,7 @@ app.get('/logout', function(req, res) {
 
 /*process new tree form*/
 
-app.post('/treeAdded',/*isLoggedIn,*/ function (req, res) {
+app.post('/treeAdded',isLoggedIn, function (req, res) {
 
     var results = [];
 
@@ -244,7 +244,7 @@ app.post('/dataAdded', isLoggedIn, function (req, res) {
     res.render
 });
 
-app.get('/exportData',isLoggedIn, function (req, res){
+app.get('/exportData',/*isLoggedIn,*/ function (req, res){
     
     var exportResults = [];
 
@@ -282,7 +282,7 @@ app.get('/exportData',isLoggedIn, function (req, res){
     res.render
 });
 
-app.get('/exportTrees',isLoggedIn, function (req, res){
+app.get('/exportTrees',/*isLoggedIn*/ function (req, res){
     
     var exportResults = [];
 

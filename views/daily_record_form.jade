@@ -46,7 +46,7 @@ html(ng-app='daily_record_form')
                 |  About
              li.dropdown
               a.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
-                i.fa.fa-tree.fa-white
+                i.fa.fa-globe.fa-white
                 |  
                 span#map Mapping  
                 b.caret
@@ -85,7 +85,7 @@ html(ng-app='daily_record_form')
     
             .form-group
                 label.col-md-2.control-label(for='tree_id ') Tree ID
-                    input.form-control.input-md(id='tree_id', type='text', placeholder='e.g T01', ng-model='formData.tree_id')
+                    input.form-control.input-md(id='tree_id', type='text', placeholder='e.g BW40P01T01', ng-model='formData.tree_id')
             .form-group
                 label.col-md-2.control-label(for='date') Date of Observation
                     input.form-control.input-md(id='date', type='text', placeholder='e.g. 04/23/2016', ng-model='formData.date')
@@ -93,8 +93,8 @@ html(ng-app='daily_record_form')
                 label.col-md-2.control-label(for='time') Time of Observation
                     input.form-control.input-md(id='time', type='text', placeholder='e.g. 21:00', ng-model='formData.time')
             .form-group
-                label.col-md-2.control-label(for='flow ') Quantity
-                    input.form-control.input-md(id='flow', type='text', placeholder='e.g .79 liters', ng-model='formData.flow')
+                label.col-md-2.control-label(for='flow ') Quantity (litres)
+                    input.form-control.input-md(id='flow', type='text', placeholder='e.g .79', ng-model='formData.flow')
             .form-group
                 label.col-md-2.control-label(for='sugar') Sugar
                     input.form-control.input-md(id='sugar', type='text', placeholder='', ng-model='formData.sugar')

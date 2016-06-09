@@ -20,6 +20,8 @@ angular.module('daily_record_form', [])
     $scope.exportData = function() {
         $http.get('/exportData').success(function(data, status, headers, config) {
          var anchor = angular.element('<a/>');
+	 anchor.css({display: 'none'}); // Make sure it's not visible
+	 angular.element(document.body).append(anchor); // Attach to document
          anchor.attr({
              href: 'data:attachment/csv;charset=utf-8,' + encodeURI(data),
              target: '_blank',
