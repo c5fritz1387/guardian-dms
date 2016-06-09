@@ -16,7 +16,7 @@ var conString = "postgres://c5fritz1387:password@localhost:5432/birchtest";
 
 module.exports = function(app, passport) {
 
-/* GET pg json data. */
+/* GET birch plots data data. */
 app.get('/pg/plots', isLoggedIn, function (req, res) {
         var client = new pg.Client(conString);
         client.connect();         
@@ -38,6 +38,27 @@ app.get('/pg/plots', isLoggedIn, function (req, res) {
         });
 });
 
+/* GET field notes data. */
+app.get('/pg/fieldnotes', isLoggedIn, function (req, res) {
+        var client = new pg.Client(conString);
+        client.connect();         
+
+        var query = client.query("SELECT row_to_json(fc) " 
+            + "FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features "
+            + "FROM (SELECT 'Feature' As type "
+                + ", ST_AsGeoJSON(lg.wkb_geometry)::json As geometry "
+                + ", row_to_json(lp) As properties "
+                + "FROM public.fieldnotes As lg "
+                    + "INNER JOIN (SELECT * FROM public.fieldnotes) As lp "
+                    + "ON lg.ogc_fid = lp.ogc_fid  ) As f )  As fc"); 
+        query.on("row", function (row, result) {
+            result.addRow(row);
+        });
+        query.on("end", function (result) {
+            res.send(result.rows[0].row_to_json);
+            res.end();
+        });
+});
 // show the home page (will also have our login links)
 app.get('/', function(req, res) {
     res.render('index');
